@@ -1,0 +1,21 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: multicloudstorage
+      POSTGRES_PASSWORD: multicloudstorage
+      POSTGRES_DB: multicloudstorage
+    volumes:
+      - ./multicloud-migrations:/docker-entrypoint-initdb.d
+    networks:
+      - multicloud-network
+
+networks:
+  multicloud-network:
+
+volumes:
+  multicloud-migrations:
+    driver: local
